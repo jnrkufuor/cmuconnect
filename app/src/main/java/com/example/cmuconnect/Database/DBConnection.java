@@ -16,7 +16,7 @@ public class DBConnection {
         switch (serverName)
         {
             case "local":
-                url = "jdbc:mysql://localhost:3306/pizzeria";
+                url = "jdbc:mysql://localhost:3306/cmuconnect";
                 username = "root";
                 password = "root";
                 break;
