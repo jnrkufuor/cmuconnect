@@ -38,8 +38,8 @@ public class SplashScreen extends AppCompatActivity {
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
     private View mContentView;
-    Button loginbtn;
-    Button signUpbtn;
+    private Button loginbtn;
+    private Button signUpbtn;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
@@ -99,7 +99,7 @@ public class SplashScreen extends AppCompatActivity {
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
+//        mContentView = findViewById(R.id.fullscreen_content);
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -112,6 +112,7 @@ public class SplashScreen extends AppCompatActivity {
 
         loginbtn = findViewById(R.id.loginBtn);
         signUpbtn = findViewById(R.id.signUpBtn);
+
         loginbtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
