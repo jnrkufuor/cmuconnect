@@ -38,6 +38,8 @@ public class SplashScreen extends AppCompatActivity {
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
     private View mContentView;
+    Button loginbtn;
+    Button signUpbtn;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
@@ -108,8 +110,8 @@ public class SplashScreen extends AppCompatActivity {
             }
         });
 
-        Button loginbtn = findViewById(R.id.loginBtn);
-        Button signUpbtn = findViewById(R.id.signUpBtn);
+        loginbtn = findViewById(R.id.loginBtn);
+        signUpbtn = findViewById(R.id.signUpBtn);
         loginbtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
