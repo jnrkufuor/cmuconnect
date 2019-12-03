@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.cmuconnect.R;
 
@@ -112,7 +113,7 @@ public class SplashScreen extends AppCompatActivity {
 
         loginbtn = findViewById(R.id.loginBtn);
         signUpbtn = findViewById(R.id.signUpBtn);
-
+        Toast.makeText(this,loginbtn.toString(),Toast.LENGTH_LONG).show();
         loginbtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -132,10 +133,6 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
     }
 
     @Override
