@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.cmuconnect.Model.ConnectAPI;
 import com.example.cmuconnect.R;
 import com.example.cmuconnect.entities.User;
 
@@ -41,7 +42,7 @@ public class SplashScreen extends AppCompatActivity {
     private View mContentView;
     private Button loginbtn;
     private Button signUpbtn;
-    User user = new User();
+    ConnectAPI user = new ConnectAPI();
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
@@ -121,7 +122,10 @@ public class SplashScreen extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(SplashScreen.this, Login.class);
-                user.writeToDb();
+                user.createCommunity("cmu", "ab@email.com", "A group", true, true);
+                user.addMember("cmu@eg.com", "some_key", true);
+                user.createPost("et@et.com", "hfbdfj", "gdfbjsdhk", "A content");
+                user.loadPosts("load");
 //                startActivity(intent);
             }
         });
