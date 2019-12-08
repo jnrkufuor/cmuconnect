@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.cmuconnect.entities.Community;
 import com.example.cmuconnect.entities.Member;
+import com.example.cmuconnect.entities.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -130,6 +131,33 @@ public class Database extends SQLiteOpenHelper
     }
 
 
+    public HashMap signUp (User user)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("user_id", user.getUser_id());
+        values.put("password", user.getPassword());
+        values.put("first_name", user.getFirst_name());
+        values.put("last_name", user.getLast_name());
+        values.put("profile_pic",  user.getProfile_pic());
+
+
+        try {
+            long result = db.insertOrThrow("users", null, values);
+            if (result > -1)
+                resultSet.put("status","true");
+            else
+                resultSet.put("status","false");
+            return resultSet;
+        }
+        catch(SQLiteConstraintException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        db.close();
+        return null;
+    }
+
 
     public HashMap addMemeber (Member commm)
     {
@@ -155,8 +183,24 @@ public class Database extends SQLiteOpenHelper
         return null;
     }
 
-    public HashMap loadCommunity(String community_id) {
-
+    public HashMap loadCommunity(int community_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query ="SELECT * FROM community,posts WHERE community.id = '"+community_id+ "'";
+        Cursor cursor = db.rawQuery(query, null);
+        ArrayList <Object[]> obj = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Object [] grades = new Object [6];
+                grades[0] =cursor.getInt(cursor.getColumnIndex("SID"));
+                grades[1] =cursor.getInt(cursor.getColumnIndex("Q1"));
+                grades[2] =cursor.getInt(cursor.getColumnIndex("Q2"));
+                grades[3] =cursor.getInt(cursor.getColumnIndex("Q3"));
+                grades[4] =cursor.getInt(cursor.getColumnIndex("Q4"));
+                grades[5] =cursor.getInt(cursor.getColumnIndex("Q5"));
+                obj.add(grades);
+            } while (cursor.moveToNext());
+        }
+        db.close();
         return null;
     }
 
