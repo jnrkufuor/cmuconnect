@@ -1,12 +1,14 @@
 package com.example.cmuconnect.ui.home;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,10 +48,26 @@ public class HomeFragment extends Fragment {
             }
         });
         final ListView list = root.findViewById(R.id.communitylist);
+        final SearchView search = root.findViewById(R.id.searchbar);
 
         ListAdapter adapter=new ListAdapter(getActivity(), maintitle, subtitle,imgid);
 
         list.setAdapter(adapter);
+
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //Do something here
+                Toast.makeText(getActivity(), "Search: " + query, Toast.LENGTH_SHORT ).show();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

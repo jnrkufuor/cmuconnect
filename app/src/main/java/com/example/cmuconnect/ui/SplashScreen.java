@@ -124,11 +124,11 @@ public class SplashScreen extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(SplashScreen.this, Login.class);
-                user.createCommunity("cmu", "ab@email.com", "A group", true, true);
-                user.addMember("cmu@eg.com", "some_key", true);
-                user.createPost("et@et.com", "hfbdfj", "gdfbjsdhk", "A content");
-                user.loadPosts("load");
-//                startActivity(intent);
+//                user.createCommunity("cmu", "ab@email.com", "A group", true, true);
+//                user.addMember("cmu@eg.com", "some_key", true);
+//                user.createPost("et@et.com", "hfbdfj", "gdfbjsdhk", "A content");
+//                user.loadPosts("load");
+               startActivity(intent);
             }
         });
 
