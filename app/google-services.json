@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "847617932600",
+    "firebase_url": "https://cmu-connect.firebaseio.com",
+    "project_id": "cmu-connect",
+    "storage_bucket": "cmu-connect.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847617932600:android:6a1350aa229cc9624655cd",
+        "android_client_info": {
+          "package_name": "com.example.cmuconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847617932600-6j6751d76ifajt9tbs1imf1ajvsldmjj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmwKJj_ASQb8VqzAJn8IhHDNsP_FfKrSg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847617932600-6j6751d76ifajt9tbs1imf1ajvsldmjj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
