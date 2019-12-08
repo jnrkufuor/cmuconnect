@@ -1,5 +1,7 @@
 package com.example.cmuconnect.Model;
 
+import android.util.Log;
+
 import com.example.cmuconnect.entities.Community;
 import com.example.cmuconnect.entities.Member;
 import com.example.cmuconnect.entities.Post;
@@ -9,9 +11,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedHashMap;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public abstract class API{
 
@@ -35,6 +40,11 @@ public abstract class API{
     }
 
     public LinkedHashMap loadCommunity(String community_id) {
+
+        return null;
+    }
+
+    public LinkedHashMap loadCommunities(String communi33w) {
         return null;
     }
 
@@ -63,6 +73,23 @@ public abstract class API{
     }
 
     public boolean deleteMember(String user_id, String community_id) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+        Query applesQuery = myRef.child("member").orderByChild("user_id").equalTo(user_id);
+        System.out.println(applesQuery.getRef());
+        applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
+                    appleSnapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAG, "onCancelled", databaseError.toException());
+            }
+        });
         return false;
     }
 

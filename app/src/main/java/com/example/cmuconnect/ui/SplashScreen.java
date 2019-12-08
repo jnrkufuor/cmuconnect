@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,8 +14,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
+import com.example.cmuconnect.Database.Database;
 import com.example.cmuconnect.Model.ConnectAPI;
 import com.example.cmuconnect.R;
+import com.example.cmuconnect.entities.Community;
 import com.example.cmuconnect.entities.User;
 
 /**
@@ -41,6 +44,7 @@ public class SplashScreen extends AppCompatActivity {
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
     private View mContentView;
+    public Database db;
     private Button loginbtn;
     private Button signUpbtn;
     ConnectAPI user = new ConnectAPI();
@@ -101,20 +105,8 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash_screen);
-
+        initializations(this);
         mVisible = true;
-//        mControlsView = findViewById(R.id.fullscreen_content_controls);
-//        mContentView = findViewById(R.id.fullscreen_content);
-
-
-        // Set up the user interaction to manually show or hide the system UI.
-//        mContentView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                toggle();
-//            }
-//        });
-
         loginbtn = findViewById(R.id.loginBtn);
         signUpbtn = findViewById(R.id.signUpBtn);
 
@@ -124,10 +116,7 @@ public class SplashScreen extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(SplashScreen.this, Login.class);
-//                user.createCommunity("cmu", "ab@email.com", "A group", true, true);
-//                user.addMember("cmu@eg.com", "some_key", true);
-//                user.createPost("et@et.com", "hfbdfj", "gdfbjsdhk", "A content");
-//                user.loadPosts("load");
+                user.deleteMember("cmuw@eg.com","");
                startActivity(intent);
             }
         });
@@ -141,8 +130,16 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
+
+    private void initializations(Context context) {
+
+        db = new Database(context);
+        System.out.println(db.getDatabaseName());
+        db.createCommunity(new Community("community_name", "ser_id", "description", true, true));
+    }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
