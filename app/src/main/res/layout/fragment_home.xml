@@ -1,20 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
- 
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/linearlay"
+        android:layout_width="match_parent"
+
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <SearchView
+            android:layout_margin="10dp"
+            android:layout_width="300dp"
+            android:background="#dddddd"
+            android:layout_centerInParent="true"
+            android:queryHint="Search Here"
+            android:layout_height="45dp">
+            <requestFocus />
+        </SearchView>
+    </RelativeLayout>
     <TextView
-        android:id="@+id/text_home"
+        android:id="@+id/community_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Communities"
+        android:layout_below="@id/linearlay"
+        android:textSize="20sp"
+        android:layout_margin="20dp"/>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_below="@id/community_text"
+
+        >
+        <ListView
+            android:layout_width="match_parent"
+            android:id="@+id/communitylist"
+            android:scrollbars="none"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+    </RelativeLayout>
+</RelativeLayout>

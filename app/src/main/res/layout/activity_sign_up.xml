@@ -130,7 +130,10 @@
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             tools:layout_editor_absoluteX="352dp"
-            tools:layout_editor_absoluteY="-9dp" />
+            tools:layout_editor_absoluteY="-9dp"
+            android:clickable="true"
+            android:onClick="goBack"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

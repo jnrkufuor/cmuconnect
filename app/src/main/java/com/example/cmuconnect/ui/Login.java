@@ -5,11 +5,16 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.cmuconnect.MainActivity;
 import com.example.cmuconnect.R;
 
 /**
@@ -22,7 +27,7 @@ public class Login extends AppCompatActivity {
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
     private static final boolean AUTO_HIDE = true;
-
+    private Button login ;
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
      * user interaction before hiding the system UI.
@@ -89,6 +94,7 @@ public class Login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login2);
@@ -109,9 +115,26 @@ public class Login extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
+        //login = findViewById(R.id.login);
+
+//        loginBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View arg0) {
+//                Toast.makeText(getApplicationContext(), "Hello Javatpoint",Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(Login.this, MainActivity.class);
+//                startActivity(intent);
+//
+//            }
+//        });
 
     }
 
+    public void route(View v)
+    {
+
+        Intent intent = new Intent(Login.this, MainActivity.class);
+        startActivity(intent);
+    }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -142,6 +165,12 @@ public class Login extends AppCompatActivity {
         // Schedule a runnable to remove the status and navigation bar after a delay
         mHideHandler.removeCallbacks(mShowPart2Runnable);
         mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY);
+    }
+
+    public void goBack(View v) {
+
+        Intent intent = new Intent(Login.this, SplashScreen.class);
+        startActivity(intent);
     }
 
     @SuppressLint("InlinedApi")
