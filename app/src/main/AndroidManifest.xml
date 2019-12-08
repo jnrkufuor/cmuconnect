@@ -13,19 +13,23 @@
             android:name=".ui.SignUp"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Sign up"
+            android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme"></activity>
         <activity
             android:name=".ui.Login"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_login"
+            android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" />
         <activity
             android:name=".ui.SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash_screen"
+            android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme"
             >
             <intent-filter>

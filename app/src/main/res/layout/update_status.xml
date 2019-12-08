@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/colorPrimary">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearlay2">
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="20dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_close_black_24dp"/>
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:id="@+id/submit_status"
+            android:background="@drawable/btn_radius"
+            android:layout_margin="18dp"
+            android:text="Post"
+            android:textColor="@color/colorPrimary"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/linearlay3"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearlay2">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/relay_above"
+            android:layout_marginLeft="25dp">
+            <TextView
+                android:id="@+id/status_comm_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:text="Community"
+                ></TextView>
+            <Spinner
+                android:layout_width="50dp"
+                android:layout_toRightOf="@+id/status_comm_text"
+                android:id="@+id/community_drop"
+                android:layout_height="wrap_content">
+            </Spinner>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relay_above"
+            android:layout_marginLeft="25dp">
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="#FFFFFF"
+                android:text="Post Anonymously" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/linearlay3"
+        android:layout_marginTop="20dp"
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/status_update"
+            android:layout_width="match_parent"
+            android:textColor="#ffffff"
+            android:hint="What's on your mind?"
+            android:textColorHint="#ed8980"
+            android:layout_marginRight="26dp"
+            android:layout_marginLeft="26dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+</RelativeLayout>
