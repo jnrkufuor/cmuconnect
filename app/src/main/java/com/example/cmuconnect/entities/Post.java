@@ -7,13 +7,15 @@ public class Post {
     private String community_id;
     private String parent_post_id;
     private String content;
+    private String isAnonymous;
 
-    public Post(String user_id, String community_id, String parent_post_id, String content)
+    public Post(String user_id, String community_id, String parent_post_id, String content,String isAnonymous)
     {
         this.user_id = user_id;
         this.community_id = community_id;
         this.parent_post_id = parent_post_id;
         this.content = content;
+        this.isAnonymous=isAnonymous;
     }
 
     public Post()
@@ -59,5 +61,9 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getAnonimity() {
+        return isAnonymous;
     }
 }

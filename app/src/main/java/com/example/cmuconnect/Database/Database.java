@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.cmuconnect.entities.Community;
 import com.example.cmuconnect.entities.Member;
+import com.example.cmuconnect.entities.Post;
 import com.example.cmuconnect.entities.User;
 
 import java.util.ArrayList;
@@ -61,6 +62,7 @@ public class Database extends SQLiteOpenHelper
                 "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"+
                 "comm_member_id INTEGER DEFAULT NULL,"+
                 "parent_post_id INTEGER DEFAULT NULL,"+
+                "is_anonymous TEXT,"+
                 "content TEXT DEFAULT NULL)";
 
         String query6 = "CREATE TABLE users ("+
@@ -158,6 +160,36 @@ public class Database extends SQLiteOpenHelper
         return null;
     }
 
+    String query3 = "CREATE TABLE posts ("+
+            "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"+
+            "comm_member_id INTEGER DEFAULT NULL,"+
+            "parent_post_id INTEGER DEFAULT NULL,"+
+            "is_anonymous TEXT,"+
+            "content TEXT DEFAULT NULL)";
+
+    public HashMap createPost (Post post)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("parent_post_id", post.getParent_post_id());
+        values.put("comm_member_id", post.getMember_id());
+        values.put("is_anonymous", post.getAnonimity());
+        values.put("content",  post.getContent());
+        try {
+            long result = db.insertOrThrow("users", null, values);
+            if (result > -1)
+                resultSet.put("status","true");
+            else
+                resultSet.put("status","false");
+            return resultSet;
+        }
+        catch(SQLiteConstraintException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        db.close();
+        return null;
+    }
 
     public HashMap addMemeber (Member commm)
     {
@@ -185,74 +217,86 @@ public class Database extends SQLiteOpenHelper
 
     public HashMap loadCommunity(int community_id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query ="SELECT * FROM community,posts WHERE community.id = '"+community_id+ "'";
+        String query ="SELECT * FROM community WHERE community.id = '"+community_id+ "'";
         Cursor cursor = db.rawQuery(query, null);
         ArrayList <Object[]> obj = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
-                Object [] grades = new Object [6];
-                grades[0] =cursor.getInt(cursor.getColumnIndex("SID"));
-                grades[1] =cursor.getInt(cursor.getColumnIndex("Q1"));
-                grades[2] =cursor.getInt(cursor.getColumnIndex("Q2"));
-                grades[3] =cursor.getInt(cursor.getColumnIndex("Q3"));
-                grades[4] =cursor.getInt(cursor.getColumnIndex("Q4"));
-                grades[5] =cursor.getInt(cursor.getColumnIndex("Q5"));
-                obj.add(grades);
+                Object [] rows = new Object [6];
+                rows[0] =cursor.getInt(cursor.getColumnIndex("c_id"));
+                rows[1] =cursor.getString(cursor.getColumnIndex("description"));
+                rows[2] =cursor.getString(cursor.getColumnIndex("user_id"));
+                rows[3] =cursor.getString(cursor.getColumnIndex("isPublic"));
+                rows[4] =cursor.getString(cursor.getColumnIndex("isDefault"));
+                obj.add(rows);
             } while (cursor.moveToNext());
         }
+        resultSet.put("Result",obj);
         db.close();
         return null;
     }
 
-    public HashMap loadCommunities(String communi33w) {
-        return null;
+    public HashMap loadCommunities(String user_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query ="SELECT * FROM community,community_members WHERE community_members.user_id = '"+user_id+ "' and community_members.c_id=community.id";
+        Cursor cursor = db.rawQuery(query, null);
+        ArrayList <Object[]> obj = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                Object [] rows = new Object [2];
+                rows[0] =cursor.getInt(cursor.getColumnIndex("c_id"));
+                rows[1] =cursor.getString(cursor.getColumnIndex("community_name"));
+                obj.add(rows);
+            } while (cursor.moveToNext());
+        }
+        resultSet.put("Result",obj);
+        db.close();
+        return resultSet;
     }
 
     public HashMap loadMembers(String community_id) {
-        return null;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query ="select count(*) members_count \n" +
+                "from community_members cm\n" +
+                "where cm.community_id ="+ community_id;
+        Cursor cursor = db.rawQuery(query, null);
+        ArrayList <Object[]> obj = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                Object [] rows = new Object [2];
+                rows[0] =cursor.getInt(cursor.getColumnIndex("members_count"));
+                obj.add(rows);
+            } while (cursor.moveToNext());
+        }
+        resultSet.put("Result",obj);
+        db.close();
+        return resultSet;
     }
 
-    public boolean removeMember(String user_id, String community_id) {
-        return false;
+    public int removeMember(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("community_members",
+                "id = ? ",
+                new String[] { Integer.toString(id) });
     }
-//
-//    public void addCourse (Course course)
-//    {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues values = new ContentValues();
-//        values.put("CNAME", course.getCourseTitle());
-//        values.put("ID", course.getId());
-//        try {
-//            db.insertOrThrow("COURSE", null, values);
-//        }
-//        catch(SQLiteConstraintException e)
-//        {
-//            logger.log("Warning","Failed to insert. "+e.getMessage());
-//        }
-//        db.close();
-//    }
-//
-//    public void addGrades (int sid, int cid, int[] grades)
-//    {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues values = new ContentValues();
-//        values.put("CID", cid);
-//        values.put("SID", sid);
-//        int num = 1;
-//        for (int grade : grades)
-//        {
-//            values.put(("Q"+num), grade);
-//            num ++;
-//        }
-//        try {
-//            db.insertOrThrow("COURSE_HAS_STUDENT", null, values);
-//        }
-//        catch(SQLiteConstraintException e)
-//        {
-//            logger.log("Warning","Failed to insert. "+e.getMessage());
-//        }
-//        db.close();
-//    }
+
+    public int removePost(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("posts",
+                "id = ? ",
+                new String[] { Integer.toString(id) });
+    }
+
+    public int removeCommunity(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("community",
+                "id = ? ",
+                new String[] { Integer.toString(id) });
+    }
+
 //
 //    public  ArrayList <Object[]>  fetchGrades(String name)
 //    {
