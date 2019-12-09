@@ -15,9 +15,10 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.example.cmuconnect.Database.Database;
-import com.example.cmuconnect.Model.ConnectAPI;
+//import com.example.cmuconnect.Model.ConnectAPI;
 import com.example.cmuconnect.R;
 import com.example.cmuconnect.entities.Community;
+import com.example.cmuconnect.entities.Member;
 import com.example.cmuconnect.entities.User;
 
 /**
@@ -47,7 +48,7 @@ public class SplashScreen extends AppCompatActivity {
     public Database db;
     private Button loginbtn;
     private Button signUpbtn;
-    ConnectAPI user = new ConnectAPI();
+//    ConnectAPI user = new ConnectAPI();
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
@@ -116,7 +117,7 @@ public class SplashScreen extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(SplashScreen.this, Login.class);
-                user.deleteMember("cmuw@eg.com","");
+                //user.deleteMember("cmuw@eg.com","");
                startActivity(intent);
             }
         });
@@ -138,7 +139,12 @@ public class SplashScreen extends AppCompatActivity {
 
         db = new Database(context);
         System.out.println(db.getDatabaseName());
-        db.createCommunity(new Community("community_name", "ser_id", "description", true, true));
+        db.createCommunity(new Community("Data_Science", "ser_id", "description", false, true));
+        db.createCommunity(new Community("Guild", "ser_id", "description", true, true));
+        db.createCommunity(new Community("Iot Club", "ser_id", "description", false, true));
+        db.signUp(new User("ekufor","mama","Ernest","LastName","12"));
+        db.signUp(new User("ajabar","mama","Akintayo","Jabar","12"));
+        db.addMemeber(new Member("ekufor","9",true));
     }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

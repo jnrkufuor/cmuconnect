@@ -25,16 +25,16 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private String[] maintitle ={
-            "Title 1","Title 2",
-            "Title 3",};
+            "Data Science","Student Guild",
+            "Student Services","Academic Committee","Operations"};
 
     private String[] subtitle ={
-            "Sub Title 1","Sub Title 2",
-            "Sub Title 3"};
+            "data science","government","student services","academics",
+            "ops"};
 
     private Integer[] imgid={
-            R.drawable.bg,R.drawable.bg,
-            R.drawable.bg,  };
+            R.drawable.a,R.drawable.aa,R.drawable.a,R.drawable.bg,
+            R.drawable.aaaa };
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =

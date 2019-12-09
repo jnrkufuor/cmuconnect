@@ -160,12 +160,6 @@ public class Database extends SQLiteOpenHelper
         return null;
     }
 
-    String query3 = "CREATE TABLE posts ("+
-            "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"+
-            "comm_member_id INTEGER DEFAULT NULL,"+
-            "parent_post_id INTEGER DEFAULT NULL,"+
-            "is_anonymous TEXT,"+
-            "content TEXT DEFAULT NULL)";
 
     public HashMap createPost (Post post)
     {
@@ -215,6 +209,27 @@ public class Database extends SQLiteOpenHelper
         return null;
     }
 
+    public HashMap loadDefaultCommunities()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query ="SELECT * FROM community WHERE isDefault = 'true'";
+        Cursor cursor = db.rawQuery(query, null);
+        ArrayList <Object[]> obj = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Object [] rows = new Object [6];
+                rows[0] =cursor.getInt(cursor.getColumnIndex("c_id"));
+                rows[1] =cursor.getString(cursor.getColumnIndex("description"));
+                rows[2] =cursor.getString(cursor.getColumnIndex("user_id"));
+                rows[3] =cursor.getString(cursor.getColumnIndex("isPublic"));
+                rows[4] =cursor.getString(cursor.getColumnIndex("isDefault"));
+                obj.add(rows);
+            } while (cursor.moveToNext());
+        }
+        resultSet.put("Result",obj);
+        db.close();
+        return null;
+    }
     public HashMap loadCommunity(int community_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query ="SELECT * FROM community WHERE community.id = '"+community_id+ "'";

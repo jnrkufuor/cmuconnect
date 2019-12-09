@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cmuconnect.Database.Database;
 import com.example.cmuconnect.Model.ModelFeed;
 import com.example.cmuconnect.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -67,18 +68,43 @@ public class DashboardFragment extends Fragment {
 
     public void populateRecycleView()
     {
-        ModelFeed modelFeed = new ModelFeed(1,2,R.drawable.bg,0,
-                5,4,11,"Ernest Jabar","Social media News Feed UI design in Android Studio using recycler view. Hope you find it useful. Thanks for watching.","11 hours","Data Science");
+        Database db = new Database(getContext());
+
+
+        ModelFeed modelFeed = new ModelFeed(1,2,R.drawable.a,0,
+                5,4,15,"Ernest Jabar","There was no ice cream in the freezer, nor did they have money to go to the store.","2 hours","Random Stuff");
         mf.add(modelFeed);
-        ModelFeed modelFeed1 = new ModelFeed(1,2,R.drawable.bg,0,
-                5,4,11,"Ernest Jabar","Social media News Feed UI design in Android Studio using recycler view. Hope you find it useful. Thanks for watching.","11 hours","Data Science");
+        ModelFeed modelFeed1 = new ModelFeed(1,2,R.drawable.aa,0,
+                5,4,110,"Fred Morning","She only paints with bold colors; she does not like pastels.","5 hours","Data Science");
         mf.add(modelFeed1);
-        ModelFeed modelFeed2 = new ModelFeed(1,2,R.drawable.bg,R.drawable.cake,
-                5,4,11,"Ernest Jabar","Social media News Feed UI design in Android Studio using recycler view. Hope you find it useful. Thanks for watching.","11 hours","Data Science");
+        ModelFeed modelFeed2 = new ModelFeed(1,2,R.drawable.aaaa,R.drawable.cake,
+                5,4,11,"Julio22","Where do random thoughts come from?.","15 hours","Data Science");
         mf.add(modelFeed2);
         ModelFeed modelFeed3 = new ModelFeed(1,2,R.drawable.bg,0,
-                5,4,11,"Ernest Jabar","Social media News Feed UI design in Android Studio using recycler view. Hope you find it useful. Thanks for watching.","11 hours","Data Science");
-        mf.add(modelFeed3);
+                5,4,2000,"Amazing Stuff","Sometimes, all you need to do is completely make an ass of yourself and laugh it off to realise that life isn’t so bad after all.","1 day","Student Guild");
+        ModelFeed modelFeed4 = new ModelFeed(1,2,R.drawable.aaa,0,
+                5,4,15,"Ernest Jabar","There was no ice cream in the freezer, nor did they have money to go to the store.","2 hours","Random Stuff");
+        mf.add(modelFeed4);
+        ModelFeed modelFeed5 = new ModelFeed(1,2,R.drawable.bg,0,
+                5,4,110,"Fred Morning","She only paints with bold colors; she does not like pastels.","5 hours","Data Science");
+        mf.add(modelFeed5);
+        ModelFeed modelFeed6 = new ModelFeed(1,2,R.drawable.a,R.drawable.aaaa,
+                5,4,11,"Julio22","Where do random thoughts come from?.","15 hours","Data Science");
+        mf.add(modelFeed6);
+        ModelFeed modelFeed7 = new ModelFeed(1,2,R.drawable.bg,0,
+                5,4,2000,"Amazing Stuff","Sometimes, all you need to do is completely make an ass of yourself and laugh it off to realise that life isn’t so bad after all.","1 day","Student Guild");
+
+        mf.add(modelFeed4);
+        ModelFeed modelFeed8 = new ModelFeed(1,2,R.drawable.aaa,0,
+                5,4,110,"Fred Morning","She only paints with bold colors; she does not like pastels.","5 hours","Data Science");
+        mf.add(modelFeed8);
+        ModelFeed modelFeed9 = new ModelFeed(1,2,R.drawable.aaaa,R.drawable.cake,
+                5,4,11,"Julio22","Where do random thoughts come from?.","15 hours","Data Science");
+        mf.add(modelFeed9);
+        ModelFeed modelFeed10 = new ModelFeed(1,2,R.drawable.a,0,
+                5,4,2000,"Amazing Stuff","Sometimes, all you need to do is completely make an ass of yourself and laugh it off to realise that life isn’t so bad after all.","1 day","Student Guild");
+
+        mf.add(modelFeed10);
         adapterFeed.notifyDataSetChanged();
     }
 }
