@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -20,14 +22,13 @@ public class NotificationsFragment extends Fragment {
             ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel =
                 ViewModelProviders.of(this).get(NotificationsViewModel.class);
+        String[] array = {"Create Community","Update Profile","Change Language","Settings",
+                "FAQs","About","Logout"};
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
-        notificationsViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),R.layout.listview,array);
+        final ListView listView = (ListView) root.findViewById(R.id.profile_list);
+        listView.setAdapter(adapter);
+
         return root;
     }
 }

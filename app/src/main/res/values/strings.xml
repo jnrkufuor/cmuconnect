@@ -2,7 +2,7 @@
     <string name="app_name">cmuConnect</string>
     <string name="title_home">Communities</string>
     <string name="title_dashboard">Feed</string>
-    <string name="title_notifications">Search</string>
+    <string name="title_notifications">You</string>
 
     <string name="title_activity_splash_screen"></string>
     <string name="dummy_button">Dummy Button</string>

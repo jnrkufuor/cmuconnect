@@ -25,12 +25,14 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#fae88e"
                     android:layout_margin="@dimen/general_space"
                     app:cardCornerRadius="8dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="#fae88e"
                         android:layout_centerHorizontal="true"
                         android:orientation="horizontal">
 
@@ -66,12 +68,14 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#fae88e"
                     android:layout_margin="@dimen/general_space"
                     app:cardCornerRadius="8dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="#fae88e"
                         android:layout_centerHorizontal="true"
                         android:orientation="horizontal">
 
@@ -107,12 +111,14 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#fae88e"
                     android:layout_margin="@dimen/general_space"
                     app:cardCornerRadius="8dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="#fae88e"
                         android:layout_centerHorizontal="true"
                         android:orientation="horizontal">
 
@@ -148,12 +154,14 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#fae88e"
                     android:layout_margin="@dimen/general_space"
                     app:cardCornerRadius="8dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="#fae88e"
                         android:layout_centerHorizontal="true"
                         android:orientation="horizontal">
 
